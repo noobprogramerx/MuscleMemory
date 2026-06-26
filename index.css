@@ -1,0 +1,887 @@
+/* index.css */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Inter:wght@400;600;700&display=swap');
+
+/* Energetic Dark Theme with Cyberpunk Gym Vibes */
+:root {
+  --bg-color: hsl(220, 35%, 6%);
+  --bg-radial: radial-gradient(circle at top, hsl(222, 30%, 15%) 0%, hsl(220, 35%, 5%) 100%);
+  --card-bg: hsla(220, 25%, 11%, 0.75);
+  --card-hover: hsla(220, 25%, 16%, 0.85);
+  --primary: hsl(15, 100%, 54%); /* Fire Orange */
+  --primary-glow: hsla(15, 100%, 54%, 0.35);
+  --accent: hsl(75, 100%, 48%); /* Neon Lime */
+  --accent-glow: hsla(75, 100%, 48%, 0.25);
+  --error: hsl(0, 85%, 55%); /* Neon Red */
+  --text: hsl(0, 0%, 95%);
+  --text-muted: hsl(220, 12%, 65%);
+  --border: hsla(220, 20%, 100%, 0.07);
+  --border-focus: hsla(15, 100%, 54%, 0.5);
+  --transition-speed: 0.3s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg-color);
+  background-image: var(--bg-radial);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Header styling with gradient accent */
+header {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 0 0.5rem;
+}
+
+header h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, var(--primary) 30%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 10px rgba(255, 87, 34, 0.2));
+}
+
+#datePicker {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.6rem 1rem;
+  border-radius: 0.6rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+#datePicker:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 10px var(--primary-glow);
+}
+
+/* Main Container (Glassmorphism card) */
+main#appRoot {
+  width: 100%;
+  max-width: 960px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 1.2rem;
+  padding: 1.5rem;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  transition: all var(--transition-speed);
+}
+
+/* Home view layout (highly engaging grid) */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 550px;
+  margin: 1.5rem auto;
+}
+
+/* Home buttons (Workout Parts) */
+.home-btn {
+  background: linear-gradient(135deg, hsl(220, 20%, 15%) 0%, hsl(220, 20%, 9%) 100%);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 1.2rem 1.8rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: transform var(--transition-speed) cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow var(--transition-speed),
+              border-color var(--transition-speed);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.home-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--primary);
+  transform: scaleY(0);
+  transition: transform var(--transition-speed);
+  transform-origin: bottom;
+}
+
+.home-btn-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.home-btn-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-align: left;
+}
+
+.home-btn:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: var(--primary-focus);
+  box-shadow: 0 10px 25px rgba(255, 87, 34, 0.15), 0 0 15px var(--primary-glow);
+  background: var(--card-hover);
+}
+
+.home-btn:hover::before {
+  transform: scaleY(1);
+}
+
+.home-btn:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+/* Detail view header */
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.detail-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.btn-back {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all var(--transition-speed);
+}
+
+.btn-back:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  border-color: var(--text-muted);
+}
+
+/* Table styling with glassmorphism cells */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.8rem; /* Creates spacing between rows */
+  margin-bottom: 1rem;
+  table-layout: fixed; /* Force strict column percentages */
+}
+
+th {
+  padding: 0.8rem 1rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  color: var(--accent);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  border-bottom: 2px solid var(--border);
+  text-align: left;
+}
+
+td {
+  padding: 1rem;
+  background: hsla(220, 20%, 15%, 0.35);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  transition: background var(--transition-speed);
+}
+
+td:first-child {
+  border-left: 1px solid var(--border);
+  border-top-left-radius: 0.8rem;
+  border-bottom-left-radius: 0.8rem;
+}
+
+td:last-child {
+  border-right: 1px solid var(--border);
+  border-top-right-radius: 0.8rem;
+  border-bottom-right-radius: 0.8rem;
+}
+
+tr:hover td {
+  background: hsla(220, 20%, 18%, 0.5);
+}
+
+/* Text & Number Inputs */
+input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+input[type="text"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+input[type="number"] {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+  outline: none;
+  font-size: 1rem;
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+input[type="number"]:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 8px var(--primary-glow);
+}
+
+/* Action Buttons */
+button.action {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  padding: 0.6rem 1.2rem;
+  margin-top: 0.5rem;
+  background: linear-gradient(135deg, var(--accent) 0%, hsl(80, 100%, 40%) 100%);
+  color: #000;
+  border: none;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  box-shadow: 0 4px 15px var(--accent-glow);
+}
+
+button.action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(118, 255, 3, 0.4);
+}
+
+button.action.delete {
+  background: linear-gradient(135deg, var(--error) 0%, hsl(350, 80%, 45%) 100%);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.25);
+}
+
+button.action.delete:hover {
+  box-shadow: 0 6px 18px rgba(244, 67, 54, 0.45);
+}
+
+/* Sets Container (Dynamic Flexbox Layout) */
+.sets-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: flex-start; /* aligns items to the top to fit hint text underneath */
+}
+
+/* Individual Set Item */
+.set-item {
+  display: inline-flex;
+  flex-direction: column; /* stacking input group and hint vertically */
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border);
+  padding: 0.4rem;
+  border-radius: 0.6rem;
+  gap: 0.2rem;
+  min-width: 110px;
+}
+
+.set-input-group {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.set-item-label {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+
+/* Previous record hint under input (Motivator) */
+.set-prev-hint {
+  font-size: 0.7rem;
+  color: var(--accent);
+  opacity: 0.85;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  background: hsla(75, 100%, 48%, 0.1);
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.2rem;
+  margin-top: 0.1rem;
+  white-space: nowrap;
+}
+
+/* Mini Delete Set Button */
+.btn-mini-del {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--error);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2px;
+  transition: all var(--transition-speed);
+}
+
+.btn-mini-del:hover {
+  background: var(--error);
+  color: #fff;
+  border-color: var(--error);
+}
+
+/* Add Set Button (Plus outline style) */
+.btn-add-set {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  background: transparent;
+  color: var(--primary);
+  border: 2px dashed var(--primary);
+  padding: 0.7rem 1.2rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all var(--transition-speed);
+  align-self: center; /* centering vertically with set cards */
+  height: 48px; /* matching roughly the input size */
+  display: flex;
+  align-items: center;
+}
+
+.btn-add-set:hover {
+  background: var(--primary-glow);
+  border-style: solid;
+}
+
+/* Previous Record Vertical List */
+.prev-sets-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.4rem;
+}
+
+.prev-set-row {
+  font-size: 0.75rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  border-left: 2px solid var(--text-muted);
+}
+
+.prev-record-date {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 0.8rem;
+  color: var(--text);
+  margin-bottom: 0.2rem;
+}
+
+/* Loading & Empty states */
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top: 4px solid var(--primary);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 3rem auto;
+  filter: drop-shadow(0 0 10px var(--primary-glow));
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 3rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+}
+
+/* Bottom Save Area and Motivator Save button */
+.save-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.btn-save {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, var(--primary) 0%, hsl(340, 95%, 55%) 100%);
+  color: #fff;
+  border: none;
+  padding: 1rem 3.5rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(255, 87, 34, 0.3), 0 0 25px var(--primary-glow);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  animation: pulse-glow 2.5s infinite;
+}
+
+.btn-save:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(255, 87, 34, 0.45), 0 0 35px var(--primary-glow);
+  animation-play-state: paused; /* stop pulsating on hover */
+}
+
+.btn-save:active {
+  transform: translateY(1px);
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 6px 20px rgba(255, 87, 34, 0.3), 0 0 10px var(--primary-glow);
+  }
+  50% {
+    box-shadow: 0 6px 25px rgba(255, 87, 34, 0.45), 0 0 30px var(--primary-glow);
+  }
+  100% {
+    box-shadow: 0 6px 20px rgba(255, 87, 34, 0.3), 0 0 10px var(--primary-glow);
+  }
+}
+
+/* Toast Notification (Motivating glow) */
+.toast {
+  position: fixed;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: linear-gradient(135deg, hsl(145, 80%, 35%) 0%, hsl(145, 95%, 25%) 100%);
+  color: #fff;
+  padding: 1rem 2.5rem;
+  border-radius: 2.5rem;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(76, 175, 80, 0.3);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  z-index: 1000;
+  opacity: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* Responsive / Mobile Optimization */
+@media (max-width: 768px) {
+  body {
+    padding: 0.8rem;
+  }
+
+  header {
+    margin-bottom: 1rem;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  main#appRoot {
+    padding: 0.8rem;
+    border-radius: 0.8rem;
+  }
+
+  /* 5部位ボタンのレイアウト調整 */
+  .home-container {
+    gap: 0.8rem;
+    margin: 1rem auto;
+  }
+
+  .home-btn {
+    padding: 1rem 1.2rem;
+    border-radius: 0.8rem;
+  }
+
+  .home-btn-title {
+    font-size: 1.2rem;
+  }
+
+  .home-btn-subtitle {
+    font-size: 0.75rem;
+  }
+
+  /* テーブルのカード化 */
+  table, thead, tbody, tr, td {
+    display: block;
+    width: 100% !important;
+  }
+
+  thead {
+    display: none; /* スマホではテーブルヘッダーを非表示 */
+  }
+
+  table {
+    border-spacing: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  tr {
+    background: hsla(220, 20%, 12%, 0.6);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1rem 0.8rem 0.8rem 0.8rem;
+    margin-bottom: 1.2rem;
+    position: relative; /* 削除ボタンの絶対配置用 */
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  tr:hover td {
+    background: transparent;
+  }
+
+  td {
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+  }
+
+  /* 1. 種目名入力 */
+  td:nth-child(1) {
+    width: calc(100% - 60px) !important; /* 削除ボタンのスペースを避ける */
+  }
+
+  td:nth-child(1) input[type="text"] {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  /* 2. 前回記録 (スマホではコンパクトな横並びチップに) */
+  td:nth-child(2) {
+    background: hsla(220, 20%, 8%, 0.4) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 0.6rem !important;
+    padding: 0.5rem 0.6rem !important;
+  }
+
+  .prev-record-date {
+    font-size: 0.75rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .prev-sets-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.2rem;
+  }
+
+  .prev-set-row {
+    font-size: 0.7rem;
+    padding: 0.1rem 0.3rem;
+    border-left: 2px solid var(--accent); /* スマホではアクセント色にして視認性アップ */
+  }
+
+  /* 3. 今回の記録 (セット入力欄) */
+  td:nth-child(3) {
+    width: 100% !important;
+  }
+
+  .sets-container {
+    gap: 0.4rem;
+  }
+
+  /* セットアイテムを極限までコンパクトに */
+  .set-item {
+    min-width: 100px;
+    padding: 0.35rem 0.4rem;
+    border-radius: 0.5rem;
+    gap: 0.15rem;
+  }
+
+  .set-item-label {
+    font-size: 0.75rem;
+  }
+
+  .set-input-group input[type="number"] {
+    width: 44px;
+    font-size: 0.85rem;
+    padding: 0.25rem 0.15rem;
+  }
+
+  .set-prev-hint {
+    font-size: 0.65rem;
+    padding: 0.05rem 0.2rem;
+    margin-top: 0;
+  }
+
+  .btn-mini-del {
+    width: 16px;
+    height: 16px;
+    font-size: 9px;
+    margin-left: 1px;
+  }
+
+  .btn-add-set {
+    height: 38px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    border-radius: 0.5rem;
+  }
+
+  /* 4. 削除ボタン (右上に絶対配置して省スペース化) */
+  td:nth-child(4) {
+    position: absolute;
+    top: 1rem;
+    right: 0.8rem;
+    width: auto !important;
+  }
+
+  td:nth-child(4) button.action.delete {
+    margin: 0 !important;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.8rem;
+    border-radius: 0.5rem;
+  }
+
+  /* 詳細画面ヘッダー */
+  .detail-header {
+    gap: 0.5rem;
+    padding-bottom: 0.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .detail-title {
+    font-size: 1.3rem;
+  }
+
+  .btn-back {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.8rem;
+    border-radius: 0.5rem;
+  }
+
+  #datePicker {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.9rem;
+    border-radius: 0.5rem;
+  }
+
+  /* 下部保存エリア */
+  .save-container {
+    margin-top: 1.2rem;
+    padding-top: 1rem;
+  }
+
+  .btn-save {
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 0.6rem;
+    justify-content: center;
+  }
+}
+
+/* Settings & Data Migration Area */
+.settings-container {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all var(--transition-speed);
+}
+
+.settings-details {
+  width: 100%;
+}
+
+.settings-summary {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  transition: color var(--transition-speed);
+}
+
+.settings-summary:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.settings-summary::-webkit-details-marker {
+  display: none;
+}
+
+.settings-summary::after {
+  content: '▼';
+  font-size: 0.8rem;
+  transition: transform var(--transition-speed);
+  color: var(--primary);
+}
+
+.settings-details[open] .settings-summary::after {
+  transform: rotate(180deg);
+}
+
+.settings-content {
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.settings-description {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.settings-actions {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.btn-settings {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 0.95rem;
+  flex: 1;
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all var(--transition-speed);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+}
+
+.btn-settings.export {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.btn-settings.export:hover {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 0 15px var(--primary-glow);
+  transform: translateY(-2px);
+}
+
+.btn-settings.import {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn-settings.import:hover {
+  background: var(--accent);
+  color: #000;
+  box-shadow: 0 0 15px var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+.btn-settings:active {
+  transform: translateY(0);
+}
+
+/* Responsive adjustment for settings buttons */
+@media (max-width: 480px) {
+  .settings-actions {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}
