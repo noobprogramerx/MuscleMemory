@@ -1,0 +1,17 @@
+{
+  "name": "筋トレ記録 Simply",
+  "short_name": "Simply",
+  "description": "限界を記録し、モチベーションを高める筋トレ記録アプリ",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0b0f19",
+  "theme_color": "#ff5722",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
